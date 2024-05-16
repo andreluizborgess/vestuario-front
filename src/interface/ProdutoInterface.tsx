@@ -4,7 +4,9 @@ interface Produto{
     tamanho:string;
     cor:string;
     categoria:string;
-    :string;
-    cor:string;
+    fabricacao:string;
+    estacao:string;
+    descricao:string;
+
    
 }

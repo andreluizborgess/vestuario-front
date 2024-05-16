@@ -26,13 +26,10 @@ const CadastroProduto: React.FC = () => {
             formData.append('estacao', estacao);
             formData.append('descricao', descricao);
             formData.append('imagem', {
-                uri: imagem,
-                type: 'image/jpeg',
-                name: new Date() + '.jpg'
 
             });
 
-            const response = await axios.post('http://10.137.11.204:8000/api/produtos', formData, {
+            const response = await axios.post('http://10.137.11.204:8000/api/cadastroRoupas', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -99,23 +96,7 @@ const CadastroProduto: React.FC = () => {
                 </TouchableOpacity>
             </View>
             <View style={styles.footer}>
-                <TouchableOpacity>
-                    <Image source={require('../assets/images/casa.png')} style={styles.footerIcon}
-                    />
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => navigation.navigate('FlatLists')}>
-                    <Image source={require('../assets/images/lista-de-afazeres.png')} style={styles.footerIcon} />
-                </TouchableOpacity>
-
-                <TouchableOpacity >
-                    <Image source={require('../assets/images/usuario-de-perfil.png')} style={styles.footerIcon} />
-                </TouchableOpacity>
-
-                <TouchableOpacity >
-                    <Image source={require('../assets/images/barra-de-menu.png')} style={styles.footerIcon} />
-                </TouchableOpacity>
-
+               
             </View>
         </View>
     );
@@ -175,16 +156,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
 
-    },
-    imagemSelecionada: {
-        width: 200,
-        height: 200,
-        resizeMode: 'cover',
-        borderRadius: 5,
-        marginBottom: 10
-    },
-    alinhamentoImagemSelecionada: {
-        alignItems: 'center'
+    
     },
     button: {
         backgroundColor: 'red',
