@@ -1,7 +1,10 @@
 interface Produto{
     id:number;
-    nome:string;
-    ingredientes:string;
-    preco:number;
-    imagem:any;
+    tecido:string;
+    tamanho:string;
+    cor:string;
+    categoria:string;
+    :string;
+    cor:string;
+   
 }
