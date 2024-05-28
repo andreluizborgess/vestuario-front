@@ -29,7 +29,7 @@ const CadastroProduto: React.FC = () => {
 
             });
 
-            const response = await axios.post('http://10.137.11.204:8000/api/cadastroRoupas', formData, {
+            const response = await axios.post('http://10.137.11.204:8000/api/cadastroProduto', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
