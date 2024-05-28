@@ -45,9 +45,8 @@ function ListagemRoupas(): React.JSX.Element {
 
     const handleDelete = async (id: number) => {
         try {
-          await axios.delete('http://10.137.11.204:8000/vestuario/public/api/excluir/'+id);
-          setRoupas(roupas.filter((roupa) => roupa.id !== id));
-          setFilteredRoupas(filteredRoupas.filter((roupa) => roupa.id !== id));
+       const response = await axios.get('http://10.137.11.204/vestuario/public/api/excluir/'+id);
+       console.log(response.data)  
         } catch (error) {
           // console.error(`Erro: ${error.message}`);
           // if (error.response) {
