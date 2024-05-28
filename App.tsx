@@ -14,7 +14,7 @@ function App(): React.ReactElement{
   return (
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name='editar' component={ListagemRoupas}
+      <Stack.Screen name='listagem' component={ListagemRoupas}
       options={{headerShown:false}}/>
 
     </Stack.Navigator>
