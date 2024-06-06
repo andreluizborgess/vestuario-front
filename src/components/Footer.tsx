@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import Home from "../screens/Home";
+
 
 function Footer(): React.JSX.Element {
 
@@ -9,20 +9,13 @@ function Footer(): React.JSX.Element {
 
     return (
         <View style={styles.footer}>
-            <TouchableOpacity  style={styles.button} onPress={()=>navigation.navigate('Home')}>
+            <TouchableOpacity  style={styles.button} onPress={()=>navigation.navigate('cadastro')}>
                 <Image source={require('../assets/images/casa.png')}
                 style={styles.footericon}/>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Pesquisar')} >
-                <Image source={require('../assets/images/pesquisa.png')}
-                style={styles.footericon}/>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Listagem')}>
+            
+            <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('listagem')}>
                 <Image source={require('../assets/images/barra.png')}
-                style={styles.footericon}/>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={()=>navigation.navigate('Profile')}>
-                <Image source={require('../assets/images/usuario.png')}
                 style={styles.footericon}/>
             </TouchableOpacity>
         </View>
@@ -39,7 +32,7 @@ const styles = StyleSheet.create ({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'flex-end',
-        paddingVertical: 10
+        paddingVertical: 10,
     },
     footericon: {
         width: 30,

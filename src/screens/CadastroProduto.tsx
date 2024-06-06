@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import axios from 'axios';
 import { useNavigation } from "@react-navigation/native";
+import Footer from "../components/Footer";
 
 
 
@@ -15,6 +16,7 @@ const CadastroProduto: React.FC = () => {
     const [descricao, setDescricao] = useState<string>('');
     const [imagem, setImagem] = useState<any>('');
 
+    
     const cadastrarProduto = async () => {
         try {
             const formData = new FormData();
@@ -25,28 +27,25 @@ const CadastroProduto: React.FC = () => {
             formData.append('fabricacao', fabricacao);
             formData.append('estacao', estacao);
             formData.append('descricao', descricao);
-            formData.append('imagem', {
 
-            });
 
-            const response = await axios.post('http://10.137.11.204:8000/api/cadastroProduto', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
+            const response = await axios.post('http://10.137.11.204/api/cadastroProduto', formData);
+
+            
+            if(response.status === 200){
+                navigation.goBack();
             }
-            );
-
-            console.log(response.data)
         } catch (error) {
             console.log(error)
         }
 
     }
 
-
     const navigation = useNavigation();
+    
 
     return (
+        
         <View style={styles.container}>
             <StatusBar backgroundColor="red" barStyle="light-content" />
             <View style={styles.header}>
@@ -89,16 +88,18 @@ const CadastroProduto: React.FC = () => {
                     placeholder="descricao"
                     value={descricao}
                     onChangeText={setDescricao} />
+                    
 
 
                 <TouchableOpacity style={styles.imageButton} onPress={cadastrarProduto}>
                     <Text style={styles.imageButtonText}>cadastrar produto</Text>
                 </TouchableOpacity>
+                
             </View>
-            <View style={styles.footer}>
-               
-            </View>
+           
+            <Footer/>
         </View>
+         
     );
 }
 
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
         height: 30
     },
     header: {
-        backgroundColor: 'red',
+        backgroundColor: '#C71585',
         paddingVertical: 10,
         alignItems: 'center'
     },
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     form: {
         padding: 10,
         backgroundColor: '#f0f0f0',
-        marginBottom: 10
+        marginBottom: 'auto'
     },
     input: {
         height: 40,
@@ -146,7 +147,7 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     imageButton: {
-        backgroundColor: 'red',
+        backgroundColor: '#C71585',
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',

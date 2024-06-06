@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {  FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 import { TextInput } from 'react-native-gesture-handler';
+import Footer from '../components/Footer';
 
 
 interface Roupas {
@@ -26,8 +27,29 @@ function ListagemRoupas(): React.JSX.Element {
     const [filteredRoupas, setFilteredRoupas] = useState<Roupas[]>(roupas);
 
     useEffect(() => {
+        if (pesquisa == "") {
         ListagemRoupas();
+        }
     }, []);
+
+
+    const buscar = async () => {
+
+        try {
+            const response = await axios.get('http://10.137.11.204/vestuario/public/api/pesquisarPorCategoria/' + pesquisa);
+            console.log('buscando os carros')
+            setRoupas(response.data.data)
+            console.log(roupas)
+            if (response.data.status === true) {
+
+            } else {
+                console.log('Erro na busca:', response.data.message);
+            }
+        } catch (error) {
+            console.log('Erro na requisição:', error);
+        }
+    };
+
 
 
     const ListagemRoupas = async () => {
@@ -48,10 +70,6 @@ function ListagemRoupas(): React.JSX.Element {
        const response = await axios.get('http://10.137.11.204/vestuario/public/api/excluir/'+id);
        console.log(response.data)  
         } catch (error) {
-          // console.error(`Erro: ${error.message}`);
-          // if (error.response) {
-          //   console.error(`Status: ${error.response.status} ${error.response.statusText}`);
-          // }
         }
       };
 
@@ -85,18 +103,20 @@ function ListagemRoupas(): React.JSX.Element {
                 <Text style={styles.headerText} >Ame Fashion</Text>
                 <Text style={styles.Textocima}></Text>
             </View>
-            <TextInput style={styles.pesquisa}/>
-            <TouchableOpacity style={styles.buttonPesquisar}/>
+            <TextInput style={styles.pesquisa} placeholder='Pesquisar' value={pesquisa} onChangeText={(text) => setPesquisa(text)}/>
+            <TouchableOpacity style={styles.buttonPesquisar} onPress={() =>buscar()}><Text>pesquisar</Text></TouchableOpacity>
             <FlatList
                 data={roupas}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id.toString()}
 
+
+                
             />
             
 
 
-
+<Footer/>
         </View>
     );
 
@@ -105,6 +125,7 @@ function ListagemRoupas(): React.JSX.Element {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#caccd8'
 
 
     },
@@ -204,13 +225,14 @@ const styles = StyleSheet.create({
         borderRadius:10
     },
     buttonPesquisar:{
-        padding:10,
-        width:15,
+        padding:15,
+        width:5,
         height:10,
         position:'absolute',
         marginTop:105,
         marginLeft:350,
-        backgroundColor:'red'
+        backgroundColor:'green',
+        borderRadius:5
     }
 })
 

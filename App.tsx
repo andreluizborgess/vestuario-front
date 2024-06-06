@@ -3,7 +3,6 @@ import { FlatList } from 'react-native';
 import CadastroProduto from './src/screens/CadastroProduto';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import RoupasPesquisar from './src/screens/PesquisarRoupas';
 import EditarRoupas from './src/screens/EditarRoupas';
 import ListagemRoupas from './src/screens/ListagemRoupas';
 
@@ -14,8 +13,8 @@ function App(): React.ReactElement{
   return (
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name='listagem' component={ListagemRoupas}
-      options={{headerShown:false}}/>
+      <Stack.Screen name='listagem' component={ListagemRoupas} options={{headerShown:false}}/>
+      <Stack.Screen name='cadastro' component={CadastroProduto} options={{headerShown:false}}/>
 
     </Stack.Navigator>
     </NavigationContainer>
